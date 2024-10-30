@@ -1,0 +1,153 @@
+package students;
+
+public class Student {
+
+	private int     studentId;
+	private String   studentName;
+	private double   percentage;
+	
+	public Student() {
+		
+	}
+	
+	public Student(int studentId, String studentName, double percentage) {
+		super();
+		this.studentId = studentId;
+		this.studentName = studentName;
+		this.percentage = percentage;
+	}
+
+	public int getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+
+	public double getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(double percentage) {
+		this.percentage = percentage;
+	}	
+}
+
+
+package students;
+
+public interface CalculatePassFail {
+
+	public static double ugPassPercentage = 60;
+	public static double pgPassPercentage = 70;
+	public void classTimings();
+	public String calculation();
+}
+
+
+package students;
+
+public class Ug extends Student implements CalculatePassFail{
+
+	
+	@Override
+	public void classTimings() {
+		System.out.println("UG class timings for next semester 9am to 1pm");
+	}
+
+	@Override
+	public String calculation() {
+		
+		if(getPercentage() >= 60) 
+		    return "Pass";
+		else 
+			return "Fail";
+	}
+}
+	
+
+
+package students;
+
+public class Pg extends Student implements CalculatePassFail{
+
+	@Override
+	public void classTimings() {
+		System.out.println("PG class timings for next semester 2pm to 6pm");
+		
+	}
+
+	@Override
+	public String calculation() {
+		
+		if(getPercentage() >= pgPassPercentage)
+			return "Pass";
+		else
+		    return "Fail";
+	}
+
+}
+
+
+package students;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter Student Id");
+		int studentId =sc.nextInt();
+		sc.nextLine();
+		System.out.println("Enter Student Name");
+		String studentName = sc.nextLine();
+		System.out.println("Enter Percentage");
+		double 	percentage = sc.nextDouble();
+		sc.nextLine();
+		if(percentage>100 || percentage<0) {
+			System.out.println("Please check your percentage");
+		    System.exit(0);
+		}
+		
+		Student student = new Student(studentId, studentName, percentage);
+		
+		System.out.println("Are you UG or PG student?");
+		String graduate = sc.next();
+		Ug ugrade = new Ug();
+		ugrade.setPercentage(percentage);
+		
+		Pg pgrade = new Pg();
+		pgrade.setPercentage(percentage);
+		
+		if(graduate.equalsIgnoreCase("ug"))
+		{
+			ugrade.classTimings();
+			System.out.println(student.getStudentId()+" ~ "+student.getStudentName()+" ~ "+student.getPercentage()+" ~ "+
+		     ugrade.calculation());
+		}
+		else if(graduate.equalsIgnoreCase("pg")) {
+			pgrade.classTimings();
+			System.out.println(student.getStudentId()+" ~ "+student.getStudentName()+" ~ "+student.getPercentage()+" ~ "+
+		     pgrade.calculation());
+		}
+		else
+			System.out.println("Check your graduate");
+		sc.close();
+
+	}
+
+}
+	
+
+	
+

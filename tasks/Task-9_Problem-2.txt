@@ -1,0 +1,112 @@
+package problem92;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+
+		//Interface2: Welcome Interface
+		Welcome w = () -> {
+			return "Welcome";
+		};
+		System.out.println(w.welcome());
+
+		System.out.println("Enter two Subject Marks One by One");
+		double subjOneMarks = s.nextDouble();
+		double subjTwoMarks = s.nextDouble();
+
+		// Interface-1:SubjectMarks Interface
+		SubjectMarks sm = (subj1Mark, subj2Marks) -> {
+			return (subjOneMarks + subjTwoMarks) / 2;
+		};
+		System.out.println("Average of two subject marks :"+sm.average(subjOneMarks, subjTwoMarks));
+
+		//Interface-4: TotalBill Interface
+		System.out.println("Enter quantity");
+		int quantity = s.nextInt();
+		System.out.println("Enter price");
+		double price = s.nextDouble();
+
+		TotalBill b = (quantity1, price1) -> {
+			System.out.println("Total bill:" + (quantity1 * price1));
+		};
+		b.findingBill(quantity, price);
+
+		// Interface-3:Thank you interface
+		ThankYou t = () -> {
+			System.out.println("Thank you.");
+		};
+		t.thankYou();
+		// Interface-5:Example
+		System.out.println("Enter your age");
+		int age = s.nextInt();
+		Example e = new Example() {
+
+			@Override
+			public void ageValidation(int age) {
+				if (age > 18) {
+					System.out.println("Your eligible");
+				} else {
+					System.out.println("Your not eligible");
+				}
+
+			}
+
+		};
+		Example.welcome();
+		e.ageValidation(age);
+		e.thankYou();
+		s.close();
+	}
+}
+
+
+
+package problem92;
+
+public interface SubjectMarks {
+	public double average(double subjectOneMarks, double subjectTwoMarks);
+}
+
+
+
+package problem92;
+
+public interface Welcome {
+	public String welcome();
+}
+
+
+
+package problem92;
+
+public interface ThankYou {
+	public void thankYou();
+}
+
+
+
+package problem92;
+
+public interface TotalBill {
+	public void findingBill(int quantity, double price);
+}
+
+
+
+package problem92;
+
+public interface Example {
+
+	
+	void ageValidation(int age);
+	
+	static void welcome() {
+		System.out.println("Welcome to voterId application");
+	}
+	default void thankYou() {
+		System.out.println("Thank you for choosing this application");
+	}
+}

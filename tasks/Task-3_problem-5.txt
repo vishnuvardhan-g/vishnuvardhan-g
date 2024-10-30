@@ -1,0 +1,90 @@
+package task35;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		System.out.println("Employee incentive allocation");
+		System.out.println("Enter employee Id");
+		int empId=s.nextInt();
+                s.nextLine();
+		System.out.println("Enter employee name");
+		String name=s.nextLine();
+		System.out.println("Enter employee salary");
+		int salary=s.nextInt();
+		System.out.println("Ente no of products sold");
+		int NumberOfProductSold=s.nextInt();
+		EmployeeBO emp=new EmployeeBO();
+		emp.setEmployeeId(empId);
+		emp.setEmployeeName(name);
+	    emp.setNumberOfProductsSold(NumberOfProductSold);
+		emp.setSalary(salary);
+		emp.calculation();
+		s.close();
+
+	}
+
+}
+package task35;
+
+public class EmployeeBO extends Incentive {
+	int incentive;
+	int result;
+	public void calculation() {
+		
+		if(getNumberOfProductsSold()>20) {
+			incentive=(int) (0.2*getSalary());		
+		}
+		else if(getNumberOfProductsSold()>10&&getNumberOfProductsSold()<=20) {
+			incentive=(int)(0.1*getSalary());
+		}
+		else if(getNumberOfProductsSold()>10) {
+			incentive=0;
+		}
+		result=getSalary()+incentive;
+		System.out.format("%-10s%-10s%-10s%-15s%s\n","Id","Name","Salary","Products Sold","Salary+Incentive");
+		System.out.format("%-10s%-10s%-10s%-18s%s",getEmployeeId(),getEmployeeName(),getSalary(),getNumberOfProductsSold(),result);
+	}	
+}
+
+package task35;
+
+public class Incentive extends Employee {
+	private int salary;
+	private int numberOfProductSold;
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	public int getNumberOfProductsSold() {
+		return numberOfProductSold;
+	}
+	public void setNumberOfProductsSold(int numberOfProductsSold) {
+		this.numberOfProductSold = numberOfProductsSold;
+	}
+	
+}
+package task35;
+
+public class Employee {
+private int employeeId;
+private String employeeName;
+public int getEmployeeId() {
+	return employeeId;
+}
+public void setEmployeeId(int employeeId) {
+	this.employeeId = employeeId;
+}
+
+public String getEmployeeName() {
+	return employeeName;
+}
+public void setEmployeeName(String employeeName) {
+	this.employeeName = employeeName;
+}
+
+}

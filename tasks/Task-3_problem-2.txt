@@ -1,0 +1,83 @@
+package task3;
+
+public class ProjectManagers {
+	public int noOfProjectManagers;
+	
+	
+	public void countOfProjectManager(int noOfProjectManagers) {
+		this.noOfProjectManagers=noOfProjectManagers;
+		}
+
+}
+
+
+
+package task3;
+
+public class TeamLeaders extends ProjectManagers
+{
+	public  int noOfTeamLeaders;
+	public void countOfTeamLeaders(int noOfTeamLeaders) {
+		this.noOfTeamLeaders=noOfTeamLeaders;
+			
+	}
+
+}
+
+
+package task3;
+
+public class Developers extends TeamLeaders {
+	public int noOfDevelopers;
+	public void countOfDevelopers(int noOfDevelopers)
+	{
+this.noOfDevelopers=noOfDevelopers;
+		
+	}
+	
+
+}
+
+package task3;
+
+public class Show extends Developers{
+	int TotCountOfEmp;
+	public void display()
+	{int TotCountOfEmp;
+	TotCountOfEmp=noOfProjectManagers+noOfTeamLeaders+noOfDevelopers;
+		System.out.println("Number of project manager:"+noOfProjectManagers);
+		System.out.println("Number of Team Leaders:"+noOfTeamLeaders);
+		System.out.println("Number of Developers:"+noOfDevelopers);
+		
+		System.out.println("Total count of employees:"+TotCountOfEmp);
+		
+	}
+
+}
+
+
+
+
+package task3;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+Show sh=new Show();
+System.out.println("enter the no of project managers");
+int noOfProjectManagers=s.nextInt();
+System.out.println("enter the no of teamLeaders");
+int noOfTeamLeaders=s.nextInt();
+System.out.println("enter the no of Developers");
+int noOfDevelopers=s.nextInt();
+sh.countOfDevelopers(noOfDevelopers);
+sh.countOfProjectManager(noOfProjectManagers);
+sh.countOfTeamLeaders(noOfTeamLeaders);
+sh.display();
+
+	s.close();}
+
+}

@@ -1,0 +1,479 @@
+package problem71;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		List<Player> list = new ArrayList<Player>();
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter no of players");
+		int n = s.nextInt();
+		s.nextLine();
+		Player[] players = new Player[n];
+
+		System.out.println(
+				"Enter jersey number, Player name, Country, Skill, Player innings highest Runs, Player innings Highest wickets taken , Age, Rank");
+		for (int i = 0; i < players.length; i++) {
+			String[] v = s.nextLine().split(",");
+			players[i] = new Player(Integer.parseInt(v[0]), v[1], v[2], v[3], Integer.parseInt(v[4]),
+					Integer.parseInt(v[5]), Integer.parseInt(v[6]), Integer.parseInt(v[7]));
+			list.add(players[i]);
+		}
+		String string;
+		int print = 0;
+
+		do {
+			System.out.println("Menu Driven");
+			System.out.println("1. Display Player Details");
+			System.out.println("2. Sort By Rank");
+			System.out.println("3. Sort By Highest Score");
+			System.out.println("4. Sort By Highest Wickets Taken");
+			System.out.println("5. Sort By Age");
+			System.out.println("6. Search By Name");
+			System.out.println("7. Search By Country");
+			System.out.println("8. Search By Skill");
+			System.out.println("9. Search By Jersey Number");
+			System.out.println("10. Exit");
+			System.out.println("Enter your choice.");
+			int option = s.nextInt();
+			s.nextLine();
+			switch (option) {
+			case 1:
+				System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", "jerseyNumber,", "name,", "country,", "skill,",
+						"inHighestRun,", "inHighestWicketsTaken,", "age,", "rank");
+				for (Player player : list) {
+					System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", player.getJerseyNumber() + ",",
+							player.getName() + ",", player.getCountry() + ",", player.getSkill() + ",",
+							player.getInHighestRun() + ",", player.getInHighestWicktesTaken() + ",",
+							player.getAge() + ",", player.getRank());
+				}
+				break;
+			case 2:
+				Collections.sort(list, new SortByRank());
+				System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", "jerseyNumber,", "name,", "country,", "skill,",
+						"inHighestRun,", "inHighestWicketsTaken,", "age,", "rank");
+				for (Player player : list) {
+					System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", player.getJerseyNumber() + ",",
+							player.getName() + ",", player.getCountry() + ",", player.getSkill() + ",",
+							player.getInHighestRun() + ",", player.getInHighestWicktesTaken() + ",",
+							player.getAge() + ",", player.getRank());
+				}
+				break;
+			case 3:
+				Collections.sort(list, new SortByHighestRuns());
+				System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", "jerseyNumber,", "name,", "country,", "skill,",
+						"inHighestRun,", "inHighestWicketsTaken,", "age,", "rank");
+				for (Player player : list) {
+					System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", player.getJerseyNumber() + ",",
+							player.getName() + ",", player.getCountry() + ",", player.getSkill() + ",",
+							player.getInHighestRun() + ",", player.getInHighestWicktesTaken() + ",",
+							player.getAge() + ",", player.getRank());
+				}
+				break;
+			case 4:
+				Collections.sort(list, new SortByHighestWicketsTaken());
+				System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", "jerseyNumber,", "name,", "country,", "skill,",
+						"inHighestRun,", "inHighestWicketsTaken,", "age,", "rank");
+				for (Player player : list) {
+					System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", player.getJerseyNumber() + ",",
+							player.getName() + ",", player.getCountry() + ",", player.getSkill() + ",",
+							player.getInHighestRun() + ",", player.getInHighestWicktesTaken() + ",",
+							player.getAge() + ",", player.getRank());
+				}
+				break;
+			case 5:
+				Collections.sort(list, new SortByAge());
+				System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", "jerseyNumber,", "name,", "country,", "skill,",
+						"inHighestRun,", "inHighestWicketsTaken,", "age,", "rank");
+				for (Player player : list) {
+					System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", player.getJerseyNumber() + ",",
+							player.getName() + ",", player.getCountry() + ",", player.getSkill() + ",",
+							player.getInHighestRun() + ",", player.getInHighestWicktesTaken() + ",",
+							player.getAge() + ",", player.getRank());
+				}
+				break;
+			case 6:
+				System.out.println("Enter Name");
+				String name = s.nextLine();
+				List<Player> list1 = new SearchByName().searchByName(name, list);
+				if (list1.isEmpty()) {
+					System.out.println("Player Name not found");
+				} else {
+					for (Player player : list1) {
+						if (print == 0) {
+							System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", "jerseyNumber,", "name,", "country,",
+									"skill,", "inHighestRun,", "inHighestWicketsTaken,", "age,", "rank");
+						}
+						print++;
+						System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", player.getJerseyNumber() + ",",
+								player.getName() + ",", player.getCountry() + ",", player.getSkill() + ",",
+								player.getInHighestRun() + ",", player.getInHighestWicktesTaken() + ",",
+								player.getAge() + ",", player.getRank());
+					}
+				}
+
+				break;
+			case 7:
+				System.out.println("Enter country");
+				String country = s.nextLine();
+
+				List<Player> list2 = new SearchByCountry().searchByCountry(country, list);
+				if (list2.isEmpty()) {
+					System.out.println("Country not found");
+				} else {
+					for (Player player : list2) {
+						if (print == 0) {
+							System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", "jerseyNumber,", "name,", "country,",
+									"skill,", "inHighestRun,", "inHighestWicketsTaken,", "age,", "rank");
+						}
+						print++;
+						System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", player.getJerseyNumber() + ",",
+								player.getName() + ",", player.getCountry() + ",", player.getSkill() + ",",
+								player.getInHighestRun() + ",", player.getInHighestWicktesTaken() + ",",
+								player.getAge() + ",", player.getRank());
+					}
+				}
+
+				break;
+			case 8:
+				System.out.println("Enter skill");
+				String skill = s.nextLine();
+
+				List<Player> list3 = new SearchBySkill().searchBySkill(skill, list);
+				if (list3.isEmpty()) {
+					System.out.println("Skill not found");
+				} else {
+					for (Player player : list3) {
+						if (print == 0) {
+							System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", "jerseyNumber,", "name,", "country,",
+									"skill,", "inHighestRun,", "inHighestWicketsTaken,", "age,", "rank");
+						}
+						print++;
+						System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", player.getJerseyNumber() + ",",
+								player.getName() + ",", player.getCountry() + ",", player.getSkill() + ",",
+								player.getInHighestRun() + ",", player.getInHighestWicktesTaken() + ",",
+								player.getAge() + ",", player.getRank());
+					}
+				}
+
+				break;
+			case 9:
+				System.out.println("Enter Jersey Number");
+				Integer jerseyNumber = s.nextInt();
+
+				List<Player> list4 = new SearchByJerseyNumber().searchByJerseyNumber(jerseyNumber, list);
+				if (list4.isEmpty()) {
+					System.out.println("JerseyNumber not found");
+				} else {
+					for (Player player : list4) {
+						if (print == 0) {
+							System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", "jerseyNumber,", "name,", "country,",
+									"skill,", "inHighestRun,", "inHighestWicketsTaken,", "age,", "rank");
+						}
+						print++;
+						System.out.printf("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", player.getJerseyNumber() + ",",
+								player.getName() + ",", player.getCountry() + ",", player.getSkill() + ",",
+								player.getInHighestRun() + ",", player.getInHighestWicktesTaken() + ",",
+								player.getAge() + ",", player.getRank());
+					}
+				}
+
+				s.nextLine();
+
+				break;
+			case 10:
+				System.out.println("Exit");
+				System.exit(0);
+			}
+			System.out.println("Do you want continue (yes/no) ?");
+			string = s.nextLine();
+		} while (string.equalsIgnoreCase("yes"));
+		if (string.equalsIgnoreCase("no")) {
+			System.out.println("Thank you.");
+		}
+		s.close();
+	}
+
+}
+
+package problem71;
+
+public class Player {
+	private Integer jerseyNumber;
+	private String name;
+	private String country;
+	private String skill;
+	private Integer inHighestRun;
+	private Integer inHighestWicktesTaken;
+	private Integer age;
+	private Integer rank;
+
+	public Player() {
+		
+	}
+
+	public Player(Integer jerseyNumber, String name, String country, String skill, Integer inHighestRun,
+			Integer inHighestWicktesTaken, Integer age, Integer rank) {
+		super();
+		this.jerseyNumber = jerseyNumber;
+		this.name = name;
+		this.country = country;
+		this.skill = skill;
+		this.inHighestRun = inHighestRun;
+		this.inHighestWicktesTaken = inHighestWicktesTaken;
+		this.age = age;
+		this.rank = rank;
+	}
+
+	public Integer getJerseyNumber() {
+		return jerseyNumber;
+	}
+
+	public void setJerseyNumber(Integer jerseyNumber) {
+		this.jerseyNumber = jerseyNumber;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getSkill() {
+		return skill;
+	}
+
+	public void setSkill(String skill) {
+		this.skill = skill;
+	}
+
+	public Integer getInHighestRun() {
+		return inHighestRun;
+	}
+
+	public void setInHighestRun(Integer inHighestRun) {
+		this.inHighestRun = inHighestRun;
+	}
+
+	public Integer getInHighestWicktesTaken() {
+		return inHighestWicktesTaken;
+	}
+
+	public void setInHighestWicktesTaken(Integer inHighestWicktesTaken) {
+		this.inHighestWicktesTaken = inHighestWicktesTaken;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+
+	@Override
+	public String toString() {
+		String string = String.format("%-1s%-1s%-1s%-1s%-1s%-1s%-1s%s\n", jerseyNumber+",", name+",", country+",",
+				skill+",",inHighestRun+",",inHighestWicktesTaken+",", age+",",rank);
+		return string;
+
+	}
+
+}
+
+
+
+package problem71;
+
+import java.util.Comparator;
+
+public class SortByRank implements Comparator<Player> {
+
+	@Override
+	public int compare(Player o1, Player o2) {
+
+		if (o1.getRank() > o2.getRank()) {
+			return 2;
+		} else if (o1.getRank() == o2.getRank()) {
+			return 0;
+		} else {
+			return -2;
+		}
+	}
+
+}
+
+package problem71;
+
+import java.util.Comparator;
+
+public class SortByHighestRuns implements Comparator<Player> {
+
+	@Override
+	public int compare(Player o1, Player o2) {
+		if (o1.getInHighestRun() > o2.getInHighestRun()) {
+			return -2;
+		} else if (o1.getInHighestRun() == o2.getInHighestRun()) {
+			return 0;
+		} else {
+			return 2;
+		}
+	}
+
+}
+
+package problem71;
+
+import java.util.Comparator;
+
+public class SortByHighestWicketsTaken implements Comparator<Player> {
+
+	@Override
+	public int compare(Player o1, Player o2) {
+
+		if (o1.getInHighestWicktesTaken() > o2.getInHighestWicktesTaken()) {
+			return -2;
+		} else if (o1.getInHighestWicktesTaken() == o2.getInHighestWicktesTaken()) {
+			return 0;
+		} else {
+			return 2;
+		}
+	}
+
+}
+
+package problem71;
+
+import java.util.Comparator;
+
+public class SortByAge implements Comparator<Player> {
+
+	@Override
+	public int compare(Player o1, Player o2) {
+		if (o1.getAge() > o2.getAge()) {
+			return -2;
+		} else if (o1.getAge() == o2.getAge()) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+}
+
+package problem71;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SearchByName {
+
+	public List<Player> searchByName(String name, List<Player> list) {
+		List<Player> l = new ArrayList<Player>();
+		
+		for (Player player : list) {
+			if (name.equalsIgnoreCase(player.getName())) {
+				
+				l.add(player);
+			}
+
+		}
+
+		return l;
+
+	}
+
+}
+
+package problem71;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SearchByCountry {
+
+	public List<Player> searchByCountry(String country, List<Player> list) {
+		List<Player> l = new ArrayList<Player>();
+	
+		for (Player player : list) {
+			if (country.equalsIgnoreCase(player.getCountry())) {
+				
+
+				l.add(player);
+			}
+
+		}
+		
+
+		return l;
+	}
+
+}
+
+package problem71;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SearchBySkill {
+	public List<Player> searchBySkill(String skill, List<Player> list) {
+		List<Player> l = new ArrayList<Player>();
+
+		for (Player player : list) {
+			if (skill.equalsIgnoreCase(player.getSkill())) {
+
+				l.add(player);
+			}
+
+		}
+
+		return l;
+
+	}
+
+}
+
+package problem71;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SearchByJerseyNumber {
+
+	public List<Player> searchByJerseyNumber(Integer jerseyNumber, List<Player> list) {
+		List<Player> l = new ArrayList<Player>();
+	
+		for (Player player : list) {
+			if (jerseyNumber.equals(player.getJerseyNumber())) {
+           
+				l.add(player);
+			}
+
+		}
+		
+		return l;
+
+	}
+}

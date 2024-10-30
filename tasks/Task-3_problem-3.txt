@@ -1,0 +1,59 @@
+package preventation;
+
+public class Corona {
+
+	public void getDetails(long aadhar, String name) {
+		System.out.println("Corona Prevention ");
+		System.out.println("Aadhar Id: "+aadhar);
+		System.out.println('\u0022'+name+'\u0022'+ " not visited any countries for last 6 months");
+		
+	}
+	
+	public void getDetails(long aadhar, String name, String countries[]) {
+		System.out.println("Corona Prevention ");
+		System.out.println("Aadhar Id: "+aadhar);
+		System.out.println('\u0022'+name+'\u0022'+" visited "+countries.length+ " countries. Listed below ,");
+		
+		for(int i = 0; i<countries.length; i++)
+		{
+			System.out.println((i+1) +") "+ countries[i]);
+		}
+	}
+	
+}
+
+
+package preventation;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter your aadhar Id");
+		long id = sc.nextLong();
+		System.out.println("Enter your name");
+		String name = sc.next();
+		System.out.println("How many countries have you visited in the last 6 months?");
+		int n = sc.nextInt();
+	    if(n!=0)
+		System.out.println("List "+n);
+	    else {}
+		String country[] = new String[n];
+		for(int i=0;i<country.length;i++)
+		{
+			country[i] = sc.next();
+		}
+		Corona corona = new Corona();
+		if(n == 0)
+			corona.getDetails(id, name);
+		else 
+			corona.getDetails(id, name, country);
+			
+		sc.close();
+		
+	}
+
+}

@@ -1,0 +1,83 @@
+package online;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		System.out.println("Student online class timing allocation");
+		System.out.println("Enter the no of students");
+		int noOfStudents=s.nextInt();
+		Student student[]=new Student [noOfStudents];
+		System.out.println("Enter"+noOfStudents+"students details one by one");
+		for(int i=0;i<student.length;i++) {
+			System.out.println("Enter student Id");
+			int id=s.nextInt();
+			s.nextLine();
+			System.out.println("Enter student name");
+			String name=s.nextLine();
+			System.out.println("Enter percentage");
+			float percentage=s.nextFloat();
+			student[i]=new Student(id,name,percentage);
+		}
+StudentBO studentbo=new StudentBO() ;
+studentbo.displayStudentDetails(student);
+s.close();
+	}
+}
+package online;
+
+public class StudentBO {
+	String timing;
+	public void displayStudentDetails(Student[] student) {
+		System.out.printf("%-5s%-16s%-15s%s\n","Id","Name","Percentage","Timings");
+		for(Student student2 : student) {
+			if(student2.getPercentage()>=60 && student2.getPercentage()<=100) {
+				timing="2pm to 6pm";
+			}
+			else if(student2.getPercentage()>=0 && student2.getPercentage()<60) {
+				timing="9am to 1pm";
+			}
+			else if(student2.getPercentage()>100 || student2.getPercentage()<0) {
+				timing="Invalid percentage";
+			}
+			System.out.printf("\"%-5s%-16s%-15s%s\n",student2.getStudentId(),student2.getStudentName(),student2.getPercentage(),timing);
+		}
+	}
+
+}
+package online;
+
+public class Student {
+	private int studentId;
+	private String studentName;
+	private float percentage;
+	public Student() {
+		
+	}
+	public Student(int studentId, String studentName, float percentage) {
+	super();
+	this.studentId=studentId;
+	this.studentName=studentName;
+	this.percentage=percentage;
+}
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public float getPercentage() {
+		return percentage;
+	}
+	public void setPercentage(float percentage) {
+		this.percentage = percentage;
+	}
+}

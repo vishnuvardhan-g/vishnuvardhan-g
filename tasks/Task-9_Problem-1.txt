@@ -1,0 +1,78 @@
+package problem91;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter start number and end number");
+		int startNumber = s.nextInt();
+		int endNumber = s.nextInt();
+		new Even(startNumber, endNumber);
+		
+		new Odd(startNumber, endNumber);
+		s.close();
+	}
+
+}
+
+package problem91;
+
+public class Even extends Thread {
+	int startNumber;
+	int endNumber;
+
+	public Even(int startNumber, int endNumber) {
+		super();
+		this.startNumber = startNumber;
+		this.endNumber = endNumber;
+		start();
+	}
+
+	public void run() {
+		System.out.println("Even numbers");
+		for (int i = startNumber; i <= endNumber; i++) {
+			if (i % 2 == 0) {
+				System.out.print(i + " ");
+
+			}
+
+		}
+		System.out.println();
+		try {
+			join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}
+
+package problem91;
+
+public class Odd extends Thread {
+	int startNumber;
+	int endNumber;
+
+	public Odd(int startNumber, int endNumber) {
+		super();
+		this.startNumber = startNumber;
+		this.endNumber = endNumber;
+		start();
+	}
+
+	public void run() {
+		System.out.println("Odd numbers");
+		for (int i = startNumber; i <= endNumber; i++) {
+			if (i % 2 != 0) {
+
+				System.out.print(i + " ");
+			}
+
+		}
+	}
+
+}

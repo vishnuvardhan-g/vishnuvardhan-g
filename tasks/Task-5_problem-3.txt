@@ -1,0 +1,105 @@
+package problem53;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter first car details - car company, model , price");
+		String[] c1=s.nextLine().split(",");
+		Car car1=new Car(c1[0],c1[1],Double.parseDouble(c1[2]));
+		System.out.println("Enter second car details- car company, model , price");
+		String[] c2=s.nextLine().split(",");
+		Car car2=new Car(c2[0],c2[1],Double.parseDouble(c2[2]));
+		if(car2.equals(car1)) {
+			System.out.println(car1.getCarCompany()+", "+car1.getCarModel()+", "+car1.getPrice());
+			System.out.println(car2.getCarCompany()+", "+car2.getCarModel()+", "+car2.getPrice());
+			System.out.println("first and second car details are same");
+		}
+		else {
+			System.out.println(car1.getCarCompany()+", "+car1.getCarModel()+", "+car1.getPrice());
+			System.out.println(car2.getCarCompany()+", "+car2.getCarModel()+", "+car2.getPrice());
+			System.out.println("first and second car details are different");
+		}
+		s.close();
+	}
+
+}
+
+package problem53;
+
+public class Car {
+	private String carCompany;
+	private String carModel;
+	private double price;
+
+	public Car(String carCompany, String carModel, double price) {
+		super();
+		this.carCompany = carCompany;
+		this.carModel = carModel;
+		this.price = price;
+	}
+
+	public String getCarCompany() {
+		return carCompany;
+	}
+
+	public void setCarCompany(String carCompany) {
+		this.carCompany = carCompany;
+	}
+
+	public String getCarModel() {
+		return carModel;
+	}
+
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((carCompany == null) ? 0 : carCompany.hashCode());
+		result = prime * result + ((carModel == null) ? 0 : carModel.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		if (carCompany == null) {
+			if (other.carCompany != null)
+				return false;
+		} else if (!carCompany.equals(other.carCompany))
+			return false;
+		if (carModel == null) {
+			if (other.carModel != null)
+				return false;
+		} else if (!carModel.equals(other.carModel))
+			return false;
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+			return false;
+		return true;
+	}
+	
+
+}

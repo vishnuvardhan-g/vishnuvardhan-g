@@ -1,0 +1,57 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| hcl                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.02 sec)
+
+mysql> use hcl;
+Database changed
+
+mysql> create table admin(uid varchar(30) primary key, password varchar(30) binary);
+Query OK, 0 rows affected, 1 warning (0.31 sec)
+
+mysql> desc admin;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| uid      | varchar(30) | NO   | PRI | NULL    |       |
+| password | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into admin values('csk','cSk'),('rcb','rCb');
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select *from admin;
++-----+----------+
+| uid | password |
++-----+----------+
+| csk | cSk      |
+| rcb | rCb      |
++-----+----------+
+2 rows in set (0.00 sec)
+
+mysql> create table players(playerid int primary key,pname varchar(30),country varchar(30));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc players;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| playerid | int         | NO   | PRI | NULL    |       |
+| pname    | varchar(30) | YES  |     | NULL    |       |
+| country  | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.05 sec)
+2 rows in set (0.00 sec)
+
+

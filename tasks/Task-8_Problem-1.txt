@@ -1,0 +1,107 @@
+package problem81;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Map<Integer, Project> map = new HashMap<Integer, Project>();
+		Scanner s = new Scanner(System.in);
+		String string;
+		do {
+			System.out.println("Enter Employee id");
+			int empId = s.nextInt();
+			s.nextLine();
+			System.out.println("Enter projects -seperated by \"|\" symbol");
+			String p = s.nextLine();
+			Employee employee = new Employee(empId);
+			Project project = new Project(p, employee);
+			map.put(empId, project);
+			System.out.println("Do you want to add another employee(yes/no)");
+			string = s.nextLine();
+		} while (string.equalsIgnoreCase("yes"));
+		do {
+			System.out.println("Enter the employee id for search");
+			int eid = s.nextInt();
+			int result = 0;
+			s.nextLine();
+
+			for (Map.Entry<Integer, Project> me : map.entrySet()) {
+				if (me.getKey() == eid) {
+					result++;
+					System.out.println("Project Details");
+					System.out.println(me.getKey()+"\n" + me.getValue().getProjectName());
+				}
+			}
+			if (result == 0) {
+				System.out.println("No employee id found with " + eid);
+			}
+			System.out.println("Do you want to search another employee(yes/no)");
+			string = s.nextLine();
+		} while (string.equalsIgnoreCase("yes"));
+		if (string.equalsIgnoreCase("no")) {
+			System.out.println("Thank you");
+		}
+		s.close();
+	}
+
+}
+
+package problem81;
+
+public class Employee {
+	private Integer employeeID;
+
+	public Employee(Integer employeeID) {
+		super();
+		this.employeeID = employeeID;
+	}
+
+	public Integer getEmployeeID() {
+		return employeeID;
+	}
+
+	public void setEmployeeID(Integer employeeID) {
+		this.employeeID = employeeID;
+	}
+	
+
+}
+
+package problem81;
+
+public class Project {
+	
+
+	private String projectName;
+	private Employee employee;
+
+	public Project(String projectName, Employee employee) {
+		super();
+		this.projectName = projectName;
+		this.employee = employee;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	@Override
+	public String toString() {
+		return projectName ;
+	}
+
+}

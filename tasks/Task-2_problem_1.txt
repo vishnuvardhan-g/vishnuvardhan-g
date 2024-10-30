@@ -1,0 +1,46 @@
+package Hcl;
+
+import java.util.Scanner;
+
+public class PlayerDetails {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Name");
+		String name = sc.nextLine();
+		System.out.println("Enter the Date of Birth");
+		String dob = sc.nextLine();
+		System.out.println("Did you win state/national level ?");
+		String level = sc.nextLine();
+		System.out.println("Did you win in the game/athleticss ?");
+		String type = sc.nextLine();
+		System.out.println("Entre your athletic event/game name ?");
+		String eventName = sc.nextLine();
+		System.out.println("Enter your position (1st/2nd/3rd)");
+		String position = sc.nextLine();
+		System.out.println("Where it was held and Date ?");
+		String location = sc.nextLine();
+		
+		System.out.println("Enter your weight");
+		int wt = sc.nextInt();
+		System.out.println("Enter your mobile");
+		long mob = sc.nextLong();
+		sc.nextLine();
+		System.out.println("Enter your email id");
+		String email = sc.nextLine();
+		
+		System.out.format("%-15s%-25s%-15s%s\n","Name","Date of Birth","Weight","Game/Athletics");
+		System.out.format("%-15s%-25s%-15s%s",name,dob,wt,level);
+		System.out.println();
+		System.out.format("%-15s%-25s%-15s%s\n","Event","State/National Level","Position","Held & Date");
+		System.out.format("%-15s%-25s%-15s%s",eventName,level,position,location);
+		System.out.println();
+		System.out.format("%-15s%s\n","Mobile","Email");
+		System.out.format("%-15s%s",mob,email);
+		sc.close();
+		
+		
+		
+	}
+
+}

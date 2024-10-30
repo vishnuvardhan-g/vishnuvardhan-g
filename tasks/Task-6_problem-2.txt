@@ -1,0 +1,96 @@
+package problem62;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		try {
+		System.out.println("Enter candidate aadhar ID");
+		long aadharId=s.nextLong();
+		s.nextLine();
+		System.out.println("Enter candidate name");
+		String name=s.nextLine();
+		System.out.println("Enter candidate age");
+		int candidateAge=s.nextInt();
+		Candidate candidate=new Candidate(aadharId,name,candidateAge);
+		CandidateBO cbo=new CandidateBO();
+		cbo.candidateDetails(candidate);
+		}catch(InvalidAgeRangeException e) {
+			System.out.println(e);
+		}
+		s.close();
+
+	}
+
+}
+
+package problem62;
+
+public class Candidate {
+	private long aadharId;
+	private String candidateName;
+	private Integer age;
+
+	public Candidate(long aadharId, String candidateName, Integer age) {
+		super();
+		this.aadharId = aadharId;
+		this.candidateName = candidateName;
+		this.age = age;
+	}
+
+	public long getAadharId() {
+		return aadharId;
+	}
+
+	public void setAadharId(long aadharId) {
+		this.aadharId = aadharId;
+	}
+
+	public String getCandidateName() {
+		return candidateName;
+	}
+
+	public void setCandidateName(String candidateName) {
+		this.candidateName = candidateName;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+}
+
+package problem62;
+
+public class CandidateBO {
+public void candidateDetails(Candidate candidate) throws InvalidAgeRangeException {
+	 if(candidate.getAge()<25 ||candidate.getAge()>37) {
+		 throw new InvalidAgeRangeException();
+	 }
+	 else {
+		 System.out.println("Hi "+candidate.getCandidateName()+", you are eligible");
+	 }
+}
+}
+
+package problem62;
+
+public class InvalidAgeRangeException extends Exception{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public String toString() {
+		return  "CustomException:"+getClass().getSimpleName()+" you are not eligible";
+	}
+    
+}

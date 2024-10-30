@@ -1,0 +1,55 @@
+package problem51;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter username");
+		String name=s.nextLine();
+		System.out.println("Enter Password");
+		String pwd=s.nextLine();
+       Password p=new Password();
+       System.out.println(p.passwordValidation(name, pwd));
+		
+		s.close();
+	}
+
+}
+
+package problem51;
+
+public class Password {
+	String valid;
+
+	public String passwordValidation(String userName, String password) {
+		 if(!password.matches("(.*[0-9].*)")) {
+			valid="Hi "+userName+" Invalid Password -Numerics missing";
+		}
+		else if(!password.matches("(.*[@#$&!*].*)")) {
+			valid="Hi "+userName+" Invalid Password -special characters missing";
+		}
+	   else if(!password.matches("(.*[a-z].*)")){
+			valid="Hi "+userName+" Invalid Password -lowercase missing";
+		}
+		else if(!password.matches("(.*[A-Z].*)")) {
+			valid="Hi "+userName+" Invalid Password -Uppercase missing";
+		}
+		
+		else if(password.length()<8) {
+			valid="Hi "+userName+" Invalid Password -minimum 8 characters required";
+		}
+		else if(password.length()>20) {
+			valid="Hi "+userName+" Invalid Password -maximum 20 characters allowed";
+		}
+		else if (password.matches("(.*[a-zA-Z0-9@#$&!*]{8}{15}.*)")) {
+			valid = "Hi " + userName + ", valid";
+		}
+		else {
+			valid = "not valid";
+		}
+
+		return valid;
+	}
+}

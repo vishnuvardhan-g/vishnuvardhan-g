@@ -1,0 +1,47 @@
+package problem94;
+
+import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter number: ");
+		int number = s.nextInt();
+		s.nextLine();
+		System.out.println("Square of a given number is :"+squareOperation(number));
+		System.out.println("Enter your name and age: ");
+		String name = s.nextLine();
+		int age = s.nextInt();
+		welcome(name);
+		System.out.println(account());
+		System.out.println("You are eligible-true,You are not eligible-false :" + isPersonEligible(age));
+		s.close();
+
+	}
+
+	public static Integer squareOperation(int a) {
+		Function<Integer, Integer> f = fa -> a * a;
+		return f.apply(a);
+	}
+
+	public static void welcome(String name) {
+		Consumer<String> c = s -> System.out.println("Hi " + s + " Welcome");
+		c.accept(name);
+	}
+
+	public static String account() {
+		Supplier<String> s = () -> "bank";
+		return s.get();
+	}
+
+	public static boolean isPersonEligible(int age) {
+		Predicate<Integer> p = pr -> pr >= 18 ? true : false;
+		return p.test(age);
+	}
+
+}

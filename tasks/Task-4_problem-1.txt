@@ -1,0 +1,226 @@
+package fifa;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Enter number of matches");
+			int matches = sc.nextInt();
+
+			FootBallMatch fm[] = new FootBallMatch[matches];
+			
+			Result result = new Result();
+			FootBallMatchBO fb = new FootBallMatchBO();
+
+			for (int i = 0; i < matches; i++) {
+
+				System.out.println("Enter match " + (i + 1) + " details:");
+				System.out.println("Enter match date");
+				String heldDate = sc.next();
+				System.out.println("Enter team one");
+				String teamOne = sc.next();
+				System.out.println("Enter team two");
+				String teamTwo = sc.next();
+				System.out.println("Enter venue");
+				String venue = sc.next();
+				System.out.println("Enter status");
+				String status = sc.next();
+				String matchStatus = "";
+				if (status.equalsIgnoreCase("won") || status.equalsIgnoreCase("draw"))
+					matchStatus = status;
+				else {
+					System.out.println("pls check your status input");
+					return;
+				}
+				System.out.println("Enter winner Team");
+				String win = sc.next();
+				String winner = "";
+				if (win.equalsIgnoreCase(teamOne) || win.equalsIgnoreCase(teamTwo))
+					winner = win;
+				else {
+					System.out.println("pls check you winner team input");
+					return;
+				}
+				result = new Result(matchStatus, winner);
+				fm[i] = new FootBallMatch(heldDate, teamOne, teamTwo, venue, result);
+				
+			}
+			int choice;
+			do {
+				System.out.println("\nMenu");
+				System.out.println("1.View match details\n2.Filter match details with result status\n3.Filter match "
+						+ "details with result winner team\n4.Exit \n");
+				System.out.println("Enter your choice");
+				choice = sc.nextInt();
+				switch (choice) {
+				case 1:
+					fb.printAllMatchDetails(fm);
+					break;
+
+				case 2:
+					System.out.println("Enter result status");
+					String status = sc.next();
+					fb.printMatchDetailsWithResultStatus(fm, status);
+					break;
+
+				case 3:
+					System.out.println("Enter result winner team");
+					String winerTeam = sc.next();
+					fb.printMatchDetailsWithResultWinner(fm, winerTeam);
+					break;
+
+				case 4:
+					System.out.println("Exit");
+					break;
+
+				default:
+					System.out.println("Please enter right choice");
+					
+				}
+				
+			} while (choice!=4);
+			
+	 
+	sc.close();
+	}
+
+
+}
+
+
+package fifa;
+
+public class FootBallMatchBO {
+	void printAllMatchDetails( FootBallMatch[] matchlist)
+	{
+		System.out.printf("%-15s%-15s%-15s%-15s%-15s%s\n","Date","Team1","Team2","Venue","Status","Winner");
+		for (FootBallMatch footballMatch : matchlist) {
+			System.out.printf("%-15s%-15s%-15s%-15s%-15s%s\n",footballMatch.getHeldDate(),footballMatch.getTeamOne(),footballMatch.getTeamTwo(),
+					footballMatch.getVenue(),footballMatch.getResult().getMatchStatus(),footballMatch.getResult().getWinner());
+			
+		}
+	}
+	
+	void printMatchDetailsWithResultStatus( FootBallMatch[] matchlist,String resultMatchStatus)
+	{
+		
+		
+		int count=0;
+		for (FootBallMatch footballMatch : matchlist) {
+			
+			if(resultMatchStatus.equalsIgnoreCase(footballMatch.getResult().getMatchStatus())) {
+				count++;
+				System.out.printf("%-15s%-15s%-15s%-15s%-15s%s\n","Date","Team1","Team2","Venue","Status","Winner");
+			System.out.printf("%-15s%-15s%-15s%-15s%-15s%s\n",footballMatch.getHeldDate(),footballMatch.getTeamOne(),footballMatch.getTeamTwo(),
+			footballMatch.getVenue(),footballMatch.getResult().getMatchStatus(),footballMatch.getResult().getWinner());
+			}
+			
+		}
+		if(count==0)
+			System.out.println("match status invalid");
+	}
+	
+	void printMatchDetailsWithResultWinner(FootBallMatch[] matchlist,String resultWinner)
+	{
+		
+		int count=0;
+		for (FootBallMatch footballMatch : matchlist) {
+			
+			if(resultWinner.equalsIgnoreCase(footballMatch.getResult().getWinner())) {
+				count++;
+				System.out.printf("%-15s%-15s%-15s%-15s%-15s%s\n","Date","Team1","Team2","Venue","Status","Winner");
+				System.out.printf("%-15s%-15s%-15s%-15s%-15s%s\n",footballMatch.getHeldDate(),footballMatch.getTeamOne(),footballMatch.getTeamTwo(),
+				footballMatch.getVenue(),footballMatch.getResult().getMatchStatus(),footballMatch.getResult().getWinner());
+			}
+		}
+		if(count==0)
+			System.out.println("team not found");
+	}
+	
+	
+}
+package fifa;
+
+public class FootBallMatch {
+	private String heldDate;
+	private String teamOne;
+	private String teamTwo;
+	private String venue;
+	private Result result;
+	public FootBallMatch() {
+		// TODO Auto-generated constructor stub
+	}
+	public FootBallMatch(String heldDate, String teamOne, String teamTwo, String venue, Result result) {
+		super();
+		this.heldDate = heldDate;
+		this.teamOne = teamOne;
+		this.teamTwo = teamTwo;
+		this.venue = venue;
+		this.result = result;
+	}
+	public String getHeldDate() {
+		return heldDate;
+	}
+	public void setHeldDate(String heldDate) {
+		this.heldDate = heldDate;
+	}
+	public String getTeamOne() {
+		return teamOne;
+	}
+	public void setTeamOne(String teamOne) {
+		this.teamOne = teamOne;
+	}
+	public String getTeamTwo() {
+		return teamTwo;
+	}
+	public void setTeamTwo(String teamTwo) {
+		this.teamTwo = teamTwo;
+	}
+	public String getVenue() {
+		return venue;
+	}
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}
+	public Result getResult() {
+		return result;
+	}
+	public void setResult(Result result) {
+		this.result = result;
+	}
+	
+	
+	
+}
+package fifa;
+
+public class Result {
+	private String matchStatus;
+	private String winner;
+	public Result() {
+		// TODO Auto-generated constructor stub
+	}
+	public Result(String matchStatus, String winner) {
+		super();
+		this.matchStatus = matchStatus;
+		this.winner = winner;
+	}
+	public String getMatchStatus() {
+		return matchStatus;
+	}
+	public void setMatchStatus(String matchStatus) {
+		this.matchStatus = matchStatus;
+	}
+	public String getWinner() {
+		return winner;
+	}
+	public void setWinner(String winner) {
+		this.winner = winner;
+	}
+	
+
+}
+

@@ -1,0 +1,99 @@
+package problem61;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		try {
+			Employee employee[] = new Employee[3];
+			for (int i = 0; i <3; i++) {
+				System.out.println("Employee id");
+				int id = s.nextInt();
+				s.nextLine();
+				System.out.println("Employee name");
+				String name = s.nextLine();
+				employee[i] = new Employee(id, name);
+			}
+	          new EmployeeBO().topThree(employee);
+		} catch (DuplicateException e) {
+			System.out.println(e);
+		}
+
+		s.close();
+
+	}
+
+}
+
+package problem61;
+
+public class Employee {
+	private Integer employeeId;
+	private String employeeName;
+
+	public Employee(Integer employeeId, String employeeName) {
+		super();
+		this.employeeId = employeeId;
+		this.employeeName = employeeName;
+	}
+
+	public Integer getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+
+	
+	
+
+}
+
+package problem61;
+
+public class EmployeeBO {
+	public void topThree(Employee employee[]) throws DuplicateException {
+
+		if (employee[0].getEmployeeId() == (employee[1].getEmployeeId())) {
+			throw new DuplicateException();
+		} else if (employee[1].getEmployeeId() == (employee[2].getEmployeeId())) {
+			throw new DuplicateException();
+		} else if (employee[0].getEmployeeId() == (employee[2].getEmployeeId())) {
+			throw new DuplicateException();
+		}
+
+		System.out.printf("%-15s%s\n", "Employee ID", "Employee Name");
+		for (Employee employee2 : employee) {
+
+			System.out.printf("%-15s%s\n", employee2.getEmployeeId(), employee2.getEmployeeName());
+		}
+	}
+}
+
+package problem61;
+
+public class DuplicateException extends Exception{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public String toString() {
+		return "Duplicate ID Exists";
+	}
+
+	
+}

@@ -1,0 +1,57 @@
+//Student.java
+
+package student;
+
+public class Student {
+
+	void department(int id,String name,String dept)
+	{
+		System.out.format("%-15s%-15s%s\n","Student ID","Name","Department");
+		System.out.format("%-15s%-15s%s",id,name,dept);
+	}
+	
+	String percentage(float percent)
+	{
+		if(percent > 90 && percent <= 100)
+			return "Excellent";
+		else if(percent > 70 && percent <= 90)
+			return "Very Good";
+		else if(percent >= 60 && percent <=70)
+			return "Good";
+		else if(percent >=50 && percent < 60)
+			return "Satisfactory";
+		else if(percent < 50)
+			return "Needs Improvement";
+		else if(percent < 0 || percent > 100 )
+			return "Please check your percentage";
+		else 
+			return "";
+	}
+
+}
+
+//Main.java
+
+package student;
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		Student student = new Student();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Student ID");
+		int id = sc.nextInt();
+		System.out.println("Enter Student Name");
+		String name = sc.next();
+		System.out.println("Enter Department");
+		String dept = sc.next();
+		System.out.println("Enter Percentage");
+		float per = sc.nextFloat();
+		student.department(id, name, dept);
+		System.out.println();
+		System.out.println(student.percentage(per));
+		
+	}
+
+}
+

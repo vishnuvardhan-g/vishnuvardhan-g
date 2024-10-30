@@ -1,0 +1,71 @@
+  package employeeSkillset;
+
+  public class Employee {
+  public int getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	public String getTechnicalSkillset() {
+		return technicalSkillset;
+	}
+	public void setTechnicalSkillset(String technicalSkillset) {
+		this.technicalSkillset = technicalSkillset;
+	}
+  private int employeeId;
+  private String employeeName;
+  private String technicalSkillset;
+  
+   public Employee()
+   {
+	   System.out.println("Employee Contructor called");
+   }
+  
+}
+
+  package employeeSkillset;
+
+  public class Display {
+
+	void Show(Employee e)
+	{
+		System.out.println("Employee DetailS");
+		System.out.println(e.getEmployeeId() + "--" +e.getEmployeeName() + "--" + e.getTechnicalSkillset());
+		
+	}
+	 public Display()
+	 {
+		 System.out.println("Display Constructor Called");
+	 }
+ }
+
+  package employeeSkillset;
+
+  import java.util.Scanner;
+
+  public class Main {
+
+	public static void main(String[] args) {
+	  Scanner kb = new Scanner(System.in);
+	  System.out.println(" Enter EmployeeId:");
+	  int employeeId = kb.nextInt();
+	  System.out.println(" Enter Employee Name:");
+	  String employeeName = kb.next();
+	  System.out.println(" Enter Employee technicalSkillset:");
+	  String Skillset = kb.next();
+	  Employee e = new Employee();
+	  e.setEmployeeId(employeeId);
+	  e.setEmployeeName(employeeName);
+	  e.setTechnicalSkillset(Skillset);
+          Display display = new Display();
+          display.Show(e);
+	}
+
+}
