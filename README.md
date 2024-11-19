@@ -1,13 +1,13 @@
 ﻿# vishnuvardhan-g
 Hi there, I'm Vishnu! 👋
 
-Welcome to my GitHub profile! I'm a passionate Data Solutions Developer with expertise in SQL, Snowflake, and data optimization. Here’s a bit about what I do and some of the accomplishments I’m proud of.
+Welcome to my GitHub profile! I'm a passionate Data Solutions Developer with expertise in Azure, SQL, Snowflake, and data optimization. Here’s a bit about what I do and some of the accomplishments I’m proud of.
 
 
 
 🚀 About Me
 
-💼 Data Specialist with over 3-7 years in designing, developing, and optimizing data solutions.
+💼 Data Specialist with over 3 plus years in designing, developing, and optimizing data solutions.
 
 🧠 Skilled in SQL, Snowflake, PL/SQL, and data warehousing.
 
