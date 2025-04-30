@@ -9,7 +9,7 @@ Welcome to my GitHub profile! I'm a passionate Data Solutions Developer with exp
 
 💼 Data Specialist with over 3 plus years in designing, developing, and optimizing data solutions.
 
-🧠 Skilled in SQL, Python, PL/SQL, and data warehousing.
+🧠 Skilled in SQL, Python, PL/SQL, data engineering and data warehousing.
 
 🎥 Content Creator: Documenting my travels and sharing insights on nature's beauty.
 
