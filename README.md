@@ -1,7 +1,7 @@
 ﻿# vishnuvardhan-g
 Hi there, I'm Vishnu! 👋
 
-Welcome to my GitHub profile! I'm a passionate Data Solutions Developer with expertise in Azure, SQL, Snowflake, and data optimization. Here’s a bit about what I do and some of the accomplishments I’m proud of.
+Welcome to my GitHub profile! I'm a passionate Data Solutions Developer with expertise in Python, SQL, for Azure cloud services, Snowflake, and data optimization. Here’s a bit about what I do and some of the accomplishments I’m proud of.
 
 
 
@@ -9,7 +9,7 @@ Welcome to my GitHub profile! I'm a passionate Data Solutions Developer with exp
 
 💼 Data Specialist with over 3 plus years in designing, developing, and optimizing data solutions.
 
-🧠 Skilled in SQL, Snowflake, PL/SQL, and data warehousing.
+🧠 Skilled in SQL, Python, PL/SQL, and data warehousing.
 
 🎥 Content Creator: Documenting my travels and sharing insights on nature's beauty.
 
@@ -18,7 +18,7 @@ Welcome to my GitHub profile! I'm a passionate Data Solutions Developer with exp
 
 🏆 Certifications & Accomplishments
 
-(Currently updating my certifications and recent accomplishments, stay tuned for more!)
+- Microsoft Azure Data fundamentals - DP-900 Certified
 
 
 
@@ -26,11 +26,11 @@ Welcome to my GitHub profile! I'm a passionate Data Solutions Developer with exp
 
 Databases: MS SQL Server, Snowflake, Oracle
 
-Programming & Tools: ANSI SQL, PL/SQL, GitLab, JIRA, Snowflake, Azure
+Programming & Tools: Python, SQL, PL/SQL, GitLab, Snowflake, Azure
 
-Methodologies: Agile, Data Modeling, Performance Tuning
+Methodologies: Agile, Data Modeling, Data Engineering, Performance Tuning
 
-Domains: Life Sciences, Transactional Systems, Data Warehousing
+Domains: Life Sciences, Enterprise Sales, US Communications
 
 
 
@@ -50,7 +50,7 @@ Data Migration: Led migration from on-prem to Snowflake, enhancing scalability a
 
 LinkedIn: https://www.linkedin.com/in/vishnuvardhangondi/
 
-Instagram: https://www.instagram.com/royals_0082/
+Instagram: https://www.instagram.com/vishnu_gondi/
 
 
 
